@@ -1,0 +1,23 @@
+---
+- name: Deploy Flask App to Kubernetes
+  hosts: kubernetes
+  become: yes
+
+  tasks:
+
+    - name: Pull latest Docker image
+      shell: docker pull appu9880/flaskmarket:latest
+
+    - name: Apply Kubernetes deployment
+      shell: kubectl apply -f /home/ubuntu/k8s/deployment.yml
+
+    - name: Apply Kubernetes service
+      shell: kubectl apply -f /home/ubuntu/k8s/service.yml
+
+    - name: Verify deployment
+      shell: kubectl get pods
+      register: pods_output
+
+    - name: Show running pods
+      debug:
+        msg: "{{ pods_output.stdout }}"
