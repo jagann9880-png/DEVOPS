@@ -1,0 +1,3 @@
+2025-05-05 09:30:11,920 - app - ERROR - Calculator error: 'NoneType' object has no attribute 'upper'
+2025-05-05 11:51:14,631 - app - WARNING - No data returned for SBIN.NS
+2025-05-05 11:51:52,839 - app - WARNING - No data returned for SBIN.NS
