@@ -5,7 +5,6 @@ pipeline {
         DOCKER_IMAGE = "appu9880/flaskmarket"
         DOCKER_TAG = "latest"
         DOCKER_CREDENTIALS = "dockerhub-creds"
-        GITHUB_REPO = "https://github.com/Appu9880/devops-.git"
     }
 
     stages {
@@ -15,7 +14,7 @@ pipeline {
                 echo 'Pulling latest code from GitHub...'
                 git branch: 'main',
                     credentialsId: 'github-creds',
-                    url: "${GITHUB_REPO}"
+                    url: 'https://github.com/Appu9880/devops-.git'
             }
         }
 
@@ -42,8 +41,8 @@ pipeline {
 
         stage('4. Run Ansible Playbook') {
             steps {
-                echo 'Triggering Ansible deployment...'
-                sh "ansible-playbook -i ansible/inventory.ini ansible/deploy.yml"
+                echo 'Deploying to Kubernetes via Ansible...'
+                sh "ansible-playbook /home/jagan/ansible/deploy.yml"
             }
         }
 
@@ -51,10 +50,10 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline completed successfully! Flask app deployed.'
+            echo '✅ Pipeline completed! Flask app deployed to Kubernetes.'
         }
         failure {
-            echo 'Pipeline failed. Check the logs above.'
+            echo '❌ Pipeline failed. Check the logs above.'
         }
     }
 }
