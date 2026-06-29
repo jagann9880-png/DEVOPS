@@ -14,7 +14,7 @@ pipeline {
                 echo 'Pulling latest code from GitHub...'
                 git branch: 'main',
                     credentialsId: 'github-creds',
-                    url: 'https://github.com/Appu9880/devops-.git'
+                    url: 'https://github.com/jagann9880-png/DEVOPS.git'
             }
         }
 
